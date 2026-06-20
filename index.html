@@ -22,9 +22,9 @@
   --bg:#0A0A0A;
   --surface:#111111;
   --surface-2:#161616;
-  --accent:#7B4FFF;
-  --accent-dim:rgba(123,79,255,.30);
-  --accent-glow:rgba(123,79,255,.45);
+  --accent:#FF6600;
+  --accent-dim:rgba(255,102,0,.30);
+  --accent-glow:rgba(255,102,0,.45);
   --chrome:#C0C0C0;
   --text:#F0F0F0;
   --muted:#666666;
@@ -72,7 +72,7 @@ body::after{
 /* ---------- Scroll progress bar ---------- */
 #progress{
   position:fixed;top:0;left:0;height:3px;width:0;z-index:9500;
-  background:linear-gradient(90deg,var(--accent),#a98bff);
+  background:linear-gradient(90deg,var(--accent),#FF9900);
   box-shadow:0 0 12px var(--accent-glow);
   transition:width .1s linear;
 }
@@ -215,7 +215,7 @@ section[id]{scroll-margin-top:72px}
   text-transform:uppercase;padding:15px 28px;border-radius:9px;border:1px solid transparent;
   transition:transform .2s var(--ease),box-shadow .25s,background .2s;display:inline-flex;gap:8px;align-items:center;
 }
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 0 rgba(123,79,255,0)}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 0 0 rgba(255,102,0,0)}
 .btn-primary:hover{box-shadow:0 10px 40px var(--accent-glow);transform:translateY(-2px)}
 .btn-ghost{border-color:var(--border-2);color:var(--text);background:transparent}
 .btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
@@ -429,7 +429,7 @@ section[id]{scroll-margin-top:72px}
 .field textarea{resize:vertical;min-height:110px}
 .field input::placeholder,.field textarea::placeholder{color:#555}
 .field select{appearance:none;cursor:pointer;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%237B4FFF' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' fill='none' stroke='%23FF6600' stroke-width='2'%3E%3Cpath d='M3 5l4 4 4-4'/%3E%3C/svg%3E");
   background-repeat:no-repeat;background-position:right 14px center;padding-right:38px;
 }
 .field select option{background:var(--surface);color:var(--text)}
@@ -441,7 +441,7 @@ section[id]{scroll-margin-top:72px}
 .form-foot .direct a{color:var(--accent);font-weight:600}
 .success{
   display:none;align-items:center;gap:14px;margin-top:26px;padding:18px 22px;border-radius:12px;
-  background:rgba(123,79,255,.08);border:1px solid var(--accent-dim);color:var(--text);
+  background:rgba(255,102,0,.08);border:1px solid var(--accent-dim);color:var(--text);
   font-size:1rem;animation:fadeUp .5s var(--ease);
 }
 .success.show{display:flex}
@@ -523,8 +523,8 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
 <div id="loader">
   <svg class="spin" viewBox="0 0 100 100" aria-hidden="true">
     <circle cx="50" cy="50" r="44" fill="none" stroke="#1c1c1c" stroke-width="4"/>
-    <circle cx="50" cy="50" r="44" fill="none" stroke="#7B4FFF" stroke-width="4" stroke-linecap="round" stroke-dasharray="70 200"/>
-    <circle cx="50" cy="50" r="10" fill="none" stroke="#7B4FFF" stroke-width="3"/>
+    <circle cx="50" cy="50" r="44" fill="none" stroke="#FF6600" stroke-width="4" stroke-linecap="round" stroke-dasharray="70 200"/>
+    <circle cx="50" cy="50" r="10" fill="none" stroke="#FF6600" stroke-width="3"/>
     <g stroke="#C0C0C0" stroke-width="2">
       <line x1="50" y1="22" x2="50" y2="40"/>
       <line x1="74" y1="36" x2="60" y2="46"/>
@@ -564,13 +564,13 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
       <defs>
         <filter id="blurMain"><feGaussianBlur stdDeviation="0.6"/></filter>
         <radialGradient id="rim" cx="50%" cy="50%" r="50%">
-          <stop offset="78%" stop-color="rgba(123,79,255,0)"/>
-          <stop offset="100%" stop-color="rgba(123,79,255,.10)"/>
+          <stop offset="78%" stop-color="rgba(255,102,0,0)"/>
+          <stop offset="100%" stop-color="rgba(255,102,0,.10)"/>
         </radialGradient>
       </defs>
       <g class="rot" filter="url(#blurMain)">
         <circle cx="200" cy="200" r="190" fill="url(#rim)"/>
-        <circle cx="200" cy="200" r="188" fill="none" stroke="rgba(123,79,255,.30)" stroke-width="3"/>
+        <circle cx="200" cy="200" r="188" fill="none" stroke="rgba(255,102,0,.30)" stroke-width="3"/>
         <circle cx="200" cy="200" r="176" fill="none" stroke="rgba(192,192,192,.18)" stroke-width="1.5"/>
         <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(192,192,192,.22)" stroke-width="2"/>
         <!-- 5 angular split spokes -->
@@ -586,16 +586,16 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
           <use href="#spoke" transform="rotate(288 200 200)"/>
         </g>
         <!-- lug nuts -->
-        <g fill="rgba(123,79,255,.5)">
+        <g fill="rgba(255,102,0,.5)">
           <circle cx="200" cy="178" r="4"/>
           <circle cx="221" cy="193" r="4" transform="rotate(72 200 200)"/>
           <circle cx="221" cy="193" r="4" transform="rotate(144 200 200)"/>
           <circle cx="221" cy="193" r="4" transform="rotate(216 200 200)"/>
           <circle cx="221" cy="193" r="4" transform="rotate(288 200 200)"/>
         </g>
-        <circle cx="200" cy="200" r="34" fill="#0e0e0e" stroke="rgba(123,79,255,.6)" stroke-width="2.5"/>
+        <circle cx="200" cy="200" r="34" fill="#0e0e0e" stroke="rgba(255,102,0,.6)" stroke-width="2.5"/>
         <circle cx="200" cy="200" r="20" fill="none" stroke="rgba(192,192,192,.3)" stroke-width="1.5"/>
-        <text x="200" y="207" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="20" fill="rgba(123,79,255,.8)">PW</text>
+        <text x="200" y="207" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="20" fill="rgba(255,102,0,.8)">PW</text>
       </g>
     </svg>
 
