@@ -512,6 +512,237 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
   *{animation-duration:.001s!important;animation-iteration-count:1!important;transition-duration:.05s!important}
   html{scroll-behavior:auto}
 }
+
+/* ============================================================
+   MOBILE — специальный интерфейс для телефона
+   ============================================================ */
+
+/* --- Нижняя навигация (только мобайл) --- */
+#mob-bar{
+  display:none;
+  position:fixed;bottom:0;left:0;right:0;z-index:8500;
+  background:rgba(10,10,10,.96);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border-2);
+  padding:8px 8px calc(8px + env(safe-area-inset-bottom));
+  gap:4px;
+}
+.mob-nav{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:4px;
+}
+.mob-nav a{
+  display:flex;flex-direction:column;align-items:center;gap:3px;
+  font-family:var(--f-mono);font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);padding:8px 4px 6px;border-radius:10px;
+  transition:color .2s,background .2s;-webkit-tap-highlight-color:transparent;
+}
+.mob-nav a:active,.mob-nav a.active{color:var(--accent);background:rgba(0,204,68,.08)}
+.mob-nav a svg{flex:none;width:20px;height:20px}
+.mob-tg-btn{
+  display:flex;align-items:center;justify-content:center;gap:9px;
+  background:var(--accent);color:#fff;
+  font-family:var(--f-head);font-weight:700;font-size:.9rem;letter-spacing:.04em;text-transform:uppercase;
+  border-radius:12px;padding:13px 18px;margin-bottom:8px;
+  box-shadow:0 4px 20px rgba(0,204,68,.35);
+  -webkit-tap-highlight-color:transparent;
+}
+.mob-tg-btn:active{opacity:.85}
+.mob-tg-btn svg{width:20px;height:20px;flex:none}
+
+@media(max-width:768px){
+  #mob-bar{display:block}
+  /* Отступ снизу чтобы контент не прятался за баром */
+  body{padding-bottom:calc(130px + env(safe-area-inset-bottom))}
+  /* Скрыть десктопный back-to-top — мешает мобильному бару */
+  #totop{bottom:calc(140px + env(safe-area-inset-bottom));right:14px;width:44px;height:44px;border-radius:10px}
+}
+
+/* --- Герой на мобайле --- */
+@media(max-width:768px){
+  #hero{height:auto;min-height:100svh;padding:100px 0 40px}
+  .hero-inner{padding:0 20px}
+  .hero h1{font-size:clamp(2.8rem,16vw,5rem);line-height:.88}
+  .hero .sub{font-size:clamp(1rem,4.5vw,1.4rem)}
+  .hero .desc{font-size:.95rem;max-width:none}
+  .hero-cta{flex-direction:column;gap:12px;align-items:stretch}
+  .hero-cta .btn{width:100%;justify-content:center;padding:16px 20px;font-size:1rem}
+  .wheel-main{width:100vw;height:100vw;right:-30vw;opacity:.3}
+  .wheel-small{display:none}
+  .scroll-hint{bottom:18px}
+  .hero-eyebrow{font-size:.65rem;margin-bottom:14px}
+}
+
+/* --- Навигация хедер на мобайле --- */
+@media(max-width:768px){
+  .nav{padding:12px 16px}
+  .brand .name{font-size:1.25rem}
+  .brand .mark{width:32px;height:32px;font-size:.9rem}
+  /* Мобильное меню — полноэкранный сайдбар */
+  nav.links{
+    position:fixed;top:0;left:0;height:100dvh;width:100%;
+    flex-direction:column;align-items:flex-start;gap:2px;padding:80px 24px 40px;
+    background:rgba(10,10,10,.99);backdrop-filter:blur(24px);
+    border:none;
+    transform:translateX(100%);transition:transform .3s var(--ease);
+  }
+  nav.links.open{transform:translateX(0)}
+  nav.links a{
+    font-size:1.4rem;padding:14px 0;border-bottom:1px solid var(--border);
+    width:100%;display:flex;align-items:center;justify-content:space-between;
+  }
+  nav.links a::after{content:"→";font-family:var(--f-body);color:var(--accent);font-size:1rem}
+  nav.links a.active::after{content:"→"}
+  /* Перекрываем стиль active::after из основных стилей */
+  nav.links a.active{border-bottom-color:var(--accent)}
+  .burger{padding:10px}
+  .burger span{width:22px}
+}
+
+/* --- Секции на мобайле --- */
+@media(max-width:768px){
+  .sec{padding:70px 0}
+  .wrap{padding:0 16px}
+  .h2{font-size:clamp(1.9rem,9vw,3rem)}
+  .label{font-size:.65rem}
+  .lede{font-size:.95rem}
+}
+
+/* --- О нас --- */
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr;gap:32px}
+  .about-text p{font-size:1rem}
+  .stats{grid-template-columns:1fr 1fr;gap:12px}
+  .stat{padding:20px 16px;border-radius:12px}
+  .stat .num{font-size:2.4rem}
+  .stat .cap{font-size:.78rem}
+}
+
+/* --- Услуги --- */
+@media(max-width:768px){
+  .svc-grid{grid-template-columns:1fr;gap:14px;margin-top:32px}
+  .svc{
+    padding:24px 20px 22px;
+    clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
+    display:flex;flex-direction:column;
+  }
+  .svc h3{font-size:1.15rem}
+  .svc p{font-size:.9rem}
+  .svc .ico{width:38px;height:38px;margin-bottom:14px}
+  .svc-order{
+    margin-top:16px;padding:13px 18px;font-size:.85rem;
+    width:100%;justify-content:center;border-radius:10px;
+  }
+  .svc-order:active{background:var(--accent);border-color:var(--accent);color:#fff}
+}
+
+/* --- Бренды тикер --- */
+@media(max-width:768px){
+  .pill{padding:8px 16px;font-size:.85rem}
+}
+
+/* --- Портфолио --- */
+@media(max-width:768px){
+  .gallery{grid-template-columns:1fr 1fr;gap:10px;margin-top:22px}
+  .shot{border-radius:8px}
+  .shot .ov{opacity:1;background:linear-gradient(0deg,rgba(0,0,0,.75),transparent 50%);padding:12px}
+  .shot .ov span{font-size:.9rem}
+  .shot .ov small{font-size:.58rem}
+  .filters{gap:8px;margin-top:24px}
+  .filter{padding:8px 16px;font-size:.8rem}
+}
+@media(max-width:420px){
+  .gallery{grid-template-columns:1fr}
+}
+
+/* --- Лайтбокс на мобайле --- */
+@media(max-width:768px){
+  #lightbox img{max-width:96vw;max-height:70vh;border-radius:6px}
+  .lb-btn{width:44px;height:44px;font-size:1.3rem}
+  .lb-prev{left:8px}
+  .lb-next{right:8px}
+  .lb-close{top:16px;right:16px;font-size:1.8rem}
+  .lb-count{font-size:.7rem;bottom:18px}
+}
+
+/* --- Конструктор заказа --- */
+@media(max-width:768px){
+  .tabs{
+    width:100%;border-radius:12px;padding:5px;
+    display:grid;grid-template-columns:1fr 1fr 1fr;
+  }
+  .tab{padding:11px 8px;font-size:.78rem;border-radius:7px}
+  .form-grid{grid-template-columns:1fr;gap:14px}
+  .full{grid-column:1}
+  .field input,.field select,.field textarea{
+    padding:14px 14px;font-size:1rem;border-radius:10px;
+  }
+  .field textarea{min-height:90px}
+  .field label{font-size:.65rem}
+  .helper{font-size:.88rem}
+  .form-foot{flex-direction:column;gap:14px;align-items:stretch}
+  .form-foot .btn{width:100%;justify-content:center;padding:16px}
+  .form-foot .direct{text-align:center;font-size:.88rem}
+  .success{font-size:.92rem}
+}
+
+/* --- Таймлайн --- */
+@media(max-width:768px){
+  .timeline{gap:24px;margin-top:36px}
+  .step{padding-left:18px}
+  .step .n{font-size:2.2rem}
+  .step h4{font-size:1.05rem}
+  .step p{font-size:.88rem}
+}
+
+/* --- Контакты --- */
+@media(max-width:768px){
+  .contact-grid{grid-template-columns:1fr;gap:24px;margin-top:32px}
+  .cinfo .row{padding:14px 0;gap:12px}
+  .cinfo .ic{width:36px;height:36px;border-radius:8px}
+  .cinfo .v{font-size:.96rem}
+  .cbox{padding:22px 16px;border-radius:12px}
+}
+
+/* --- Модальное окно --- */
+@media(max-width:768px){
+  #orderModal{padding:0;align-items:flex-end}
+  .modal-card{
+    width:100%;max-height:92dvh;border-radius:20px 20px 0 0;
+    padding:28px 20px 32px;
+    border-bottom:none;
+  }
+  .modal-card h3{font-size:1.7rem}
+}
+
+/* --- Футер --- */
+@media(max-width:768px){
+  footer{padding:40px 0 24px}
+  .f-brand{font-size:2rem}
+  .f-links{gap:14px}
+  .f-links a{font-size:.82rem}
+  .f-copy{font-size:.76rem;gap:8px}
+}
+
+/* --- Маленькие телефоны (< 375px) --- */
+@media(max-width:374px){
+  .hero h1{font-size:2.6rem}
+  .stats{grid-template-columns:1fr 1fr}
+  .gallery{grid-template-columns:1fr}
+  .tabs{grid-template-columns:1fr}
+  .tab{text-align:center}
+}
+
+/* --- Touch устройства — убираем hover-эффекты которые залипают --- */
+@media(hover:none){
+  .svc:hover{transform:none;box-shadow:none;border-color:var(--border)}
+  .shot:hover img{transform:none}
+  .pill:hover{border-color:var(--border-2);color:var(--chrome);box-shadow:none}
+  .btn-primary:hover{box-shadow:none;transform:none}
+  .btn-ghost:hover{border-color:var(--border-2);color:var(--text)}
+  /* Вместо hover — активное нажатие */
+  .svc:active{border-color:var(--accent);box-shadow:0 8px 30px var(--accent-dim)}
+  .btn:active{opacity:.85}
+}
 </style>
 </head>
 <body>
@@ -879,6 +1110,36 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
   </div>
 </section>
 
+<!-- ============ MOBILE BOTTOM BAR ============ -->
+<div id="mob-bar">
+  <a class="mob-tg-btn" href="https://t.me/PhantomWheelsBy" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 3.5 2.5 11l5 1.8L18 6.5l-7.7 8 .3 5 3-3.5 4 3z"/></svg>
+    Написать в Telegram
+  </a>
+  <nav class="mob-nav">
+    <a href="#about" id="mn-about">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="3"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      О нас
+    </a>
+    <a href="#services" id="mn-services">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+      Услуги
+    </a>
+    <a href="#portfolio" id="mn-portfolio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M3 17l5-5 4 4 3-3 4 4"/></svg>
+      Работы
+    </a>
+    <a href="#order" id="mn-order">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+      Заказ
+    </a>
+    <a href="#contacts" id="mn-contacts">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Контакты
+    </a>
+  </nav>
+</div>
+
 <!-- ============ FOOTER ============ -->
 <footer>
   <div class="f-mono-line"><div class="pm">PW</div></div>
@@ -1077,6 +1338,28 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
     if(e.key==='ArrowRight')move(1);
     if(e.key==='ArrowLeft')move(-1);
   });
+
+  /* ---- Swipe жесты для лайтбокса на мобайле ---- */
+  let tsX=0,tsY=0;
+  lb.addEventListener('touchstart',e=>{tsX=e.touches[0].clientX;tsY=e.touches[0].clientY;},{passive:true});
+  lb.addEventListener('touchend',e=>{
+    const dx=e.changedTouches[0].clientX-tsX;
+    const dy=Math.abs(e.changedTouches[0].clientY-tsY);
+    if(Math.abs(dx)>50&&dy<60){dx<0?move(1):move(-1);}
+  },{passive:true});
+
+  /* ---- Активный пункт нижней мобильной навигации ---- */
+  const mobLinks={about:$('#mn-about'),services:$('#mn-services'),portfolio:$('#mn-portfolio'),order:$('#mn-order'),contacts:$('#mn-contacts')};
+  const mobSpy=new IntersectionObserver((ents)=>{
+    ents.forEach(en=>{
+      if(en.isIntersecting){
+        const id=en.target.id;
+        Object.values(mobLinks).forEach(a=>{if(a)a.classList.remove('active');});
+        if(mobLinks[id])mobLinks[id].classList.add('active');
+      }
+    });
+  },{rootMargin:'-40% 0px -55% 0px'});
+  $$('section[id]').forEach(s=>{if(mobLinks[s.id])mobSpy.observe(s);});
 
   /* ---- Order modal (quick order from service cards) ---- */
   const modal=$('#orderModal');
