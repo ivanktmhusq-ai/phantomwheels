@@ -545,8 +545,13 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
   border-radius:12px;padding:13px 18px;margin-bottom:8px;
   box-shadow:0 4px 20px rgba(0,204,68,.35);
   -webkit-tap-highlight-color:transparent;
+  animation:tgPulse 3s ease-in-out infinite;
 }
-.mob-tg-btn:active{opacity:.85}
+@keyframes tgPulse{
+  0%,100%{box-shadow:0 4px 20px rgba(0,204,68,.35)}
+  50%{box-shadow:0 6px 34px rgba(0,204,68,.65),0 0 0 5px rgba(0,204,68,.12)}
+}
+.mob-tg-btn:active{opacity:.85;animation:none}
 .mob-tg-btn svg{width:20px;height:20px;flex:none}
 
 @media(max-width:768px){
@@ -617,23 +622,43 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
   .stat .cap{font-size:.78rem}
 }
 
-/* --- Услуги --- */
+/* --- Услуги — горизонтальная карусель --- */
 @media(max-width:768px){
-  .svc-grid{grid-template-columns:1fr;gap:14px;margin-top:32px}
+  .svc-grid{
+    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
+    gap:14px;padding:4px 16px 10px;margin:24px -16px 0;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  }
+  .svc-grid::-webkit-scrollbar{display:none}
   .svc{
+    flex:0 0 82vw;min-width:0;
     padding:24px 20px 22px;
     clip-path:polygon(0 0,calc(100% - 16px) 0,100% 16px,100% 100%,0 100%);
     display:flex;flex-direction:column;
+    scroll-snap-align:start;
   }
   .svc h3{font-size:1.15rem}
   .svc p{font-size:.9rem}
   .svc .ico{width:38px;height:38px;margin-bottom:14px}
   .svc-order{
-    margin-top:16px;padding:13px 18px;font-size:.85rem;
+    margin-top:auto;padding:13px 18px;font-size:.85rem;
     width:100%;justify-content:center;border-radius:10px;
   }
   .svc-order:active{background:var(--accent);border-color:var(--accent);color:#fff}
 }
+
+/* --- Карусель: точки и подсказка свайпа --- */
+.svc-dots{display:none;justify-content:center;align-items:center;gap:7px;margin-top:18px}
+@media(max-width:768px){.svc-dots{display:flex}}
+.svc-dot{width:7px;height:7px;border-radius:50%;background:var(--border-2);transition:background .25s,transform .25s,width .25s;flex:none}
+.svc-dot.active{background:var(--accent);transform:scale(1.15);width:18px;border-radius:4px}
+.svc-swipe-hint{
+  display:none;text-align:center;margin-top:10px;
+  font-family:var(--f-mono);font-size:.6rem;letter-spacing:.22em;color:var(--muted);text-transform:uppercase;
+  animation:swipeHintFade 4s ease 1.5s both;
+}
+@media(max-width:768px){.svc-swipe-hint{display:block}}
+@keyframes swipeHintFade{0%{opacity:0}15%{opacity:1}75%{opacity:1}100%{opacity:0;pointer-events:none}}
 
 /* --- Бренды тикер --- */
 @media(max-width:768px){
@@ -929,6 +954,8 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
         <button class="svc-order" data-svc="Консультация и подбор">Заказать →</button>
       </div>
     </div>
+    <div class="svc-dots" id="svcDots"></div>
+    <p class="svc-swipe-hint">← свайп →</p>
   </div>
 </section>
 
@@ -1360,6 +1387,19 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
     });
   },{rootMargin:'-40% 0px -55% 0px'});
   $$('section[id]').forEach(s=>{if(mobLinks[s.id])mobSpy.observe(s);});
+
+  /* ---- Карусель услуг: точки-индикаторы ---- */
+  const svcG=$('.svc-grid'),svcD=$('#svcDots');
+  if(svcG&&svcD&&matchMedia('(max-width:768px)').matches){
+    const cards=$$('.svc',svcG);
+    cards.forEach((_,i)=>{const d=document.createElement('span');d.className='svc-dot'+(i===0?' active':'');svcD.appendChild(d);});
+    const dots=$$('.svc-dot',svcD);
+    svcG.addEventListener('scroll',()=>{
+      const cardW=cards[0].getBoundingClientRect().width+14;
+      const idx=Math.min(Math.round(svcG.scrollLeft/cardW),cards.length-1);
+      dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+    },{passive:true});
+  }
 
   /* ---- Order modal (quick order from service cards) ---- */
   const modal=$('#orderModal');
