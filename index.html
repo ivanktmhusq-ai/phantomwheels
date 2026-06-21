@@ -815,59 +815,76 @@ footer{border-top:1px solid var(--border);padding:54px 0 30px;text-align:center}
 <!-- ============ HERO ============ -->
 <section id="hero">
   <div class="hero-bg">
-    <!-- Main wheel (5-spoke alloy, BBS/Vossen style) -->
+    <!-- Main steering wheel (3-spoke GT racing style) -->
     <svg class="wheel-main" id="wheelMain" viewBox="0 0 400 400" aria-hidden="true">
       <defs>
         <filter id="blurMain"><feGaussianBlur stdDeviation="0.6"/></filter>
-        <radialGradient id="rim" cx="50%" cy="50%" r="50%">
-          <stop offset="78%" stop-color="rgba(255,102,0,0)"/>
-          <stop offset="100%" stop-color="rgba(255,102,0,.10)"/>
+        <radialGradient id="swGlow" cx="50%" cy="50%" r="50%">
+          <stop offset="72%" stop-color="rgba(255,102,0,0)"/>
+          <stop offset="100%" stop-color="rgba(255,102,0,.13)"/>
         </radialGradient>
       </defs>
       <g class="rot" filter="url(#blurMain)">
-        <circle cx="200" cy="200" r="190" fill="url(#rim)"/>
-        <circle cx="200" cy="200" r="188" fill="none" stroke="rgba(255,102,0,.30)" stroke-width="3"/>
-        <circle cx="200" cy="200" r="176" fill="none" stroke="rgba(192,192,192,.18)" stroke-width="1.5"/>
-        <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(192,192,192,.22)" stroke-width="2"/>
-        <!-- 5 angular split spokes -->
-        <g stroke="#C0C0C0" stroke-opacity=".55" stroke-width="2.5" fill="none" stroke-linejoin="round">
-          <g id="spoke">
-            <path d="M200 56 L182 150 L200 168 L218 150 Z"/>
-            <path d="M191 100 L191 150"/>
-            <path d="M209 100 L209 150"/>
-          </g>
-          <use href="#spoke" transform="rotate(72 200 200)"/>
-          <use href="#spoke" transform="rotate(144 200 200)"/>
-          <use href="#spoke" transform="rotate(216 200 200)"/>
-          <use href="#spoke" transform="rotate(288 200 200)"/>
+        <!-- Ambient glow -->
+        <circle cx="200" cy="200" r="190" fill="url(#swGlow)"/>
+
+        <!-- RIM — outer edge ring -->
+        <circle cx="200" cy="200" r="184" fill="none" stroke="rgba(255,102,0,.32)" stroke-width="2"/>
+        <!-- Rim grip body -->
+        <circle cx="200" cy="200" r="173" fill="none" stroke="rgba(18,18,18,.95)" stroke-width="24"/>
+        <circle cx="200" cy="200" r="173" fill="none" stroke="rgba(192,192,192,.28)" stroke-width="24"/>
+        <!-- Chrome trim lines -->
+        <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(192,192,192,.48)" stroke-width="1.5"/>
+        <circle cx="200" cy="200" r="161" fill="none" stroke="rgba(192,192,192,.38)" stroke-width="1.5"/>
+        <!-- Orange 12 o'clock racing marker -->
+        <path d="M193 15 A184 184 0 0 1 207 15" stroke="rgba(255,102,0,.95)" stroke-width="26" fill="none" stroke-linecap="butt"/>
+        <!-- Subtle grip stitch texture -->
+        <circle cx="200" cy="200" r="173" fill="none" stroke="rgba(255,102,0,.07)" stroke-width="20" stroke-dasharray="3 11"/>
+
+        <!-- SPOKES — 3-spoke, 120° apart -->
+        <!-- Spoke defined in-place at 12 o'clock; reused via <use> at 120° and 240° -->
+        <g id="sw-spoke" fill="rgba(192,192,192,.14)" stroke-linejoin="round">
+          <!-- Spoke body: tapered from hub (wide) to rim (narrow) -->
+          <path d="M188 150 C188 94 193 46 193 37 L207 37 C207 46 212 94 212 150 Z"
+                stroke="rgba(192,192,192,.46)" stroke-width="1.2"/>
+          <!-- Orange center accent line -->
+          <line x1="200" y1="150" x2="200" y2="37" stroke="rgba(255,102,0,.32)" stroke-width="1.5"/>
+          <!-- Chrome highlight (left edge) -->
+          <line x1="192" y1="140" x2="194" y2="41" stroke="rgba(255,255,255,.17)" stroke-width="0.9"/>
         </g>
-        <!-- lug nuts -->
-        <g fill="rgba(255,102,0,.5)">
-          <circle cx="200" cy="178" r="4"/>
-          <circle cx="221" cy="193" r="4" transform="rotate(72 200 200)"/>
-          <circle cx="221" cy="193" r="4" transform="rotate(144 200 200)"/>
-          <circle cx="221" cy="193" r="4" transform="rotate(216 200 200)"/>
-          <circle cx="221" cy="193" r="4" transform="rotate(288 200 200)"/>
+        <use href="#sw-spoke" transform="rotate(120 200 200)"/>
+        <use href="#sw-spoke" transform="rotate(240 200 200)"/>
+
+        <!-- HUB CENTER PAD -->
+        <circle cx="200" cy="200" r="50" fill="#0c0c0c" stroke="rgba(255,102,0,.65)" stroke-width="2.5"/>
+        <circle cx="200" cy="200" r="40" fill="none" stroke="rgba(192,192,192,.22)" stroke-width="1.5"/>
+        <!-- Bolt at 12 o'clock (inside hub, aligned with each spoke) -->
+        <g fill="rgba(255,102,0,.55)">
+          <circle cx="200" cy="177" r="4"/>
+          <circle cx="200" cy="177" r="4" transform="rotate(120 200 200)"/>
+          <circle cx="200" cy="177" r="4" transform="rotate(240 200 200)"/>
         </g>
-        <circle cx="200" cy="200" r="34" fill="#0e0e0e" stroke="rgba(255,102,0,.6)" stroke-width="2.5"/>
-        <circle cx="200" cy="200" r="20" fill="none" stroke="rgba(192,192,192,.3)" stroke-width="1.5"/>
-        <text x="200" y="207" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="20" fill="rgba(255,102,0,.8)">PW</text>
+        <!-- Bolt recess holes -->
+        <g fill="#0f0f0f">
+          <circle cx="200" cy="177" r="2"/>
+          <circle cx="200" cy="177" r="2" transform="rotate(120 200 200)"/>
+          <circle cx="200" cy="177" r="2" transform="rotate(240 200 200)"/>
+        </g>
+        <!-- PW emblem -->
+        <text x="200" y="207" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="20" fill="rgba(255,102,0,.85)" letter-spacing="2">PW</text>
       </g>
     </svg>
 
-    <!-- Secondary wheel -->
+    <!-- Secondary steering wheel (background, faded) -->
     <svg class="wheel-small" viewBox="0 0 400 400" aria-hidden="true">
       <g class="rot" filter="url(#blurMain)">
-        <circle cx="200" cy="200" r="188" fill="none" stroke="rgba(192,192,192,.5)" stroke-width="3"/>
-        <circle cx="200" cy="200" r="150" fill="none" stroke="rgba(192,192,192,.4)" stroke-width="2"/>
-        <g stroke="#C0C0C0" stroke-width="3" fill="none">
-          <use href="#spoke"/>
-          <use href="#spoke" transform="rotate(72 200 200)"/>
-          <use href="#spoke" transform="rotate(144 200 200)"/>
-          <use href="#spoke" transform="rotate(216 200 200)"/>
-          <use href="#spoke" transform="rotate(288 200 200)"/>
-        </g>
-        <circle cx="200" cy="200" r="34" fill="#0e0e0e" stroke="rgba(192,192,192,.6)" stroke-width="3"/>
+        <circle cx="200" cy="200" r="185" fill="none" stroke="rgba(192,192,192,.55)" stroke-width="2"/>
+        <circle cx="200" cy="200" r="173" fill="none" stroke="rgba(192,192,192,.48)" stroke-width="24"/>
+        <circle cx="200" cy="200" r="161" fill="none" stroke="rgba(192,192,192,.42)" stroke-width="2"/>
+        <use href="#sw-spoke"/>
+        <use href="#sw-spoke" transform="rotate(120 200 200)"/>
+        <use href="#sw-spoke" transform="rotate(240 200 200)"/>
+        <circle cx="200" cy="200" r="50" fill="#0c0c0c" stroke="rgba(192,192,192,.65)" stroke-width="2.5"/>
       </g>
     </svg>
   </div>
