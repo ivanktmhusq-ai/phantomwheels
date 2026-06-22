@@ -208,6 +208,10 @@ header.scrolled{box-shadow:0 8px 30px -22px rgba(0,0,0,.4)}
 .tee-shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:46px 24px 22px;background:linear-gradient(transparent,rgba(20,16,12,.85))}
 .tee-shot figcaption span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
 .tee-shot figcaption b{font-family:var(--f-display);font-size:1.5rem;font-weight:600;color:#fff;display:block;margin-top:4px}
+.tee-thumbs{grid-column:1/-1;display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.tee-thumbs .tt{width:66px;height:80px;border-radius:10px;overflow:hidden;border:2px solid rgba(255,255,255,.14);background:#231f1b;padding:0;transition:border-color .25s}
+.tee-thumbs .tt img{width:100%;height:100%;object-fit:cover}
+.tee-thumbs .tt.on{border-color:var(--gold-2)}
 
 /* ---------- catalog ---------- */
 .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:38px}
@@ -247,6 +251,11 @@ header.scrolled{box-shadow:0 8px 30px -22px rgba(0,0,0,.4)}
 .card-foot button:hover svg{transform:translateX(4px)}
 .catalog-note{text-align:center;margin-top:40px;font-size:13px;color:var(--muted)}
 .catalog-note a{color:var(--gold);font-weight:600}
+.cat-block{margin-bottom:54px;scroll-margin-top:96px}
+.cat-block:last-child{margin-bottom:0}
+.cat-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:22px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.cat-head h3{font-family:var(--f-display);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600}
+.cat-head .cat-count{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;white-space:nowrap}
 
 /* ---------- quality segments ---------- */
 .quality{background:var(--bg-2)}
@@ -426,6 +435,12 @@ footer ul a:hover{color:var(--gold-2)}
 .lb-item:hover figcaption{opacity:1;transform:none}
 @keyframes lbScroll{to{transform:translateX(-50%)}}
 
+/* ---------- video showcase ---------- */
+.videos{background:var(--bg-2)}
+.video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vid{border-radius:18px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:9/16;box-shadow:0 26px 50px -40px rgba(60,45,20,.5)}
+.vid video{width:100%;height:100%;object-fit:cover;display:block;background:#000}
+
 /* ---------- social proof / reviews ---------- */
 .proof{background:var(--bg-2);position:relative}
 .proof-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:860px;margin:0 auto 50px;text-align:center}
@@ -502,6 +517,7 @@ footer ul a:hover{color:var(--gold-2)}
   .fab{right:14px;bottom:14px}
   .lb-item{width:230px;height:308px}
   .react-row{gap:6px}
+  .video-grid{grid-template-columns:1fr;max-width:360px;margin:0 auto}
 }
 
 /* mobile menu */
@@ -584,6 +600,7 @@ footer ul a:hover{color:var(--gold-2)}
   <nav>
     <a href="#catalog" class="mlink">Каталог</a>
     <a href="#lookbook" class="mlink">Лукбук</a>
+    <a href="#videos" class="mlink">Видео-обзоры</a>
     <a href="#drop" class="mlink">Новинка — унисекс футболка</a>
     <a href="#quality" class="mlink">Сегменты качества</a>
     <a href="#reviews" class="mlink">Отзывы</a>
@@ -615,7 +632,7 @@ footer ul a:hover{color:var(--gold-2)}
     </div>
     <div class="hero-card reveal">
       <div class="hero-stage">
-        <img data-src="foto/photo_1782110428690_0.jpg" alt="Образ из коллекции NICHÉ by NAYA — цветочное платье Zimmermann" />
+        <img data-src="foto/26.jpg" alt="Образ из коллекции NICHÉ by NAYA — летнее цветочное платье" />
       </div>
       <div class="hero-float">Алматы · <b>доставка по миру</b></div>
       <div class="hero-badge">
@@ -650,14 +667,37 @@ footer ul a:hover{color:var(--gold-2)}
   </div>
 </section>
 
+<!-- ===== video showcase ===== -->
+<section class="sec videos" id="videos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">In motion</span>
+      <h2 class="h-sec">Видео-обзоры</h2>
+      <p>Как вещи выглядят и сидят в движении — живые обзоры из канала. Без звука, тапните для звука и полноэкранного режима.</p>
+    </div>
+    <div class="video-grid">
+      <div class="vid reveal"><video src="foto/IMG_4308.MP4" muted loop playsinline preload="metadata" controls></video></div>
+      <div class="vid reveal" data-d="1"><video src="foto/IMG_4356.MP4" muted loop playsinline preload="metadata" controls></video></div>
+      <div class="vid reveal" data-d="2"><video src="foto/IMG_4368.MOV" muted loop playsinline preload="metadata" controls></video></div>
+    </div>
+  </div>
+</section>
+
 <!-- ===== NEW DROP — unisex t-shirt ===== -->
 <section class="drop sec" id="drop">
   <div class="wrap drop-grid">
     <div class="drop-gallery reveal">
       <figure class="tee-shot">
-        <img data-src="foto/photo_1782110430913_9.jpg" alt="Унисекс футболка NICHÉ — статемент-принт «WTF is Matcha»" />
+        <img id="tee-main" data-src="foto/13.jpg" alt="Унисекс футболка NICHÉ — статемент-принт «WTF is Matcha»" />
         <figcaption><span>Statement-принт</span><b>«WTF is Matcha»</b></figcaption>
       </figure>
+      <div class="tee-thumbs">
+        <button class="tt on" data-tee="foto/13.jpg" aria-label="Мокап"><img data-src="foto/13.jpg" alt=""/></button>
+        <button class="tt" data-tee="foto/14.jpg" aria-label="Образ 1"><img data-src="foto/14.jpg" alt=""/></button>
+        <button class="tt" data-tee="foto/15.jpg" aria-label="Образ 2"><img data-src="foto/15.jpg" alt=""/></button>
+        <button class="tt" data-tee="foto/16.jpg" aria-label="Образ 3"><img data-src="foto/16.jpg" alt=""/></button>
+        <button class="tt" data-tee="foto/17.jpg" aria-label="Образ 4"><img data-src="foto/17.jpg" alt=""/></button>
+      </div>
     </div>
     <div class="reveal">
       <span class="pill"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>Новый дроп · Унисекс</span>
@@ -686,7 +726,7 @@ footer ul a:hover{color:var(--gold-2)}
       <p>Отобранные модели в наличии и под персональный заказ. У некоторых позиций есть несколько сегментов качества — выберите то, что подходит именно вам.</p>
     </div>
     <div class="filters reveal" id="filters"></div>
-    <div class="grid" id="grid"></div>
+    <div id="catalog-cats"></div>
     <p class="catalog-note reveal">Не нашли нужную модель? <a href="#order">Найдём любую позицию по вашему запросу →</a></p>
   </div>
 </section>
@@ -1014,34 +1054,100 @@ footer ul a:hover{color:var(--gold-2)}
      (или в массив "imgs" для галереи quick-view). Пока файла нет,
      автоматически показывается элегантный плейсхолдер — сайт
      остаётся презентабельным.
-     Сейчас подключены реальные фото:
-       • Платье Zimmermann  — photo_…_0,2,4,1,3.jpg
-       • Сумка Dior D-Joy   — photo_…_8,5,7,6.jpg
-       • Футболка (новинка) — photo_…_9.jpg
-     Позиции «coming soon» ждут файлы foto/coming-06…11.jpg.
+     Реальные фото лежат в /foto как 01.jpg … 97.jpg (97 шт.)
+     + 3 видео (IMG_4308.MP4, IMG_4356.MP4, IMG_4368.MOV).
+     Каждый товар ссылается на свои кадры через img/imgs.
+     Категории-разделы строятся автоматически из поля cat.
      Логотип: если положить foto/logo.png — он заменит SVG-герб.
    ============================================================ */
 
 /* ---- 1. CATALOG DATA (редактируйте свободно) ----
    Цены — ориентировочные (placeholder), уточните и поправьте. */
 const PRODUCTS = [
-  {id:'01', name:'Платье Zimmermann «Floral»', cat:'Платья', tags:['stock','order'], aaa:true, price:'78 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Лён-шёлк · акварельный принт',
-    img:'foto/photo_1782110428690_0.jpg',
-    imgs:['foto/photo_1782110428690_0.jpg','foto/photo_1782110429384_2.jpg','foto/photo_1782110429812_4.jpg','foto/photo_1782110429192_1.jpg','foto/photo_1782110429595_3.jpg'],
-    desc:'Романтичное платье-бюстье с пышной юбкой и бело-голубым акварельным флоральным принтом. Корсетный лиф с драпировкой, плотная фактурная ткань лён-шёлк, фирменная сборка. Выглядит дорого и узнаваемо — оригинальная фурнитура и бирка Zimmermann.'},
-  {id:'02', name:'Сумка Dior «D-Joy» Crystal', cat:'Аксессуары', tags:['order'], aaa:true, price:'165 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Кожа · кристальная вышивка',
-    img:'foto/photo_1782110430708_8.jpg',
-    imgs:['foto/photo_1782110430708_8.jpg','foto/photo_1782110430026_5.jpg','foto/photo_1782110430504_7.jpg','foto/photo_1782110430261_6.jpg'],
-    desc:'Белая сумка с ручной вышивкой кристаллами-цветами в розово-сиреневом градиенте, золотая фурнитура и подвеска D.I.O.R., съёмный ремень. Эксклюзивная позиция AAA+ в полной фирменной упаковке.'},
-  {id:'03', name:'Платье «Noir Élégance»', cat:'Платья', tags:['order'], aaa:true, price:'42 500', sizes:['S','M','L','XL'], quality:'AAA+ · Lux', fabric:'Плотный креп', img:'foto/coming-06.jpg', desc:'Чёрное вечернее платье силуэта миди. Держит форму, выглядит дорого, садится по фигуре. Фото добавим в ближайшее время.'},
-  {id:'04', name:'Костюм «Milano Set»', cat:'Костюмы', tags:['order'], aaa:false, price:'48 000', sizes:['S','M','L'], quality:'AA · Премиум', fabric:'Костюмная ткань', img:'foto/coming-07.jpg', desc:'Комплект жакет + брюки прямого кроя. Универсальная база для капсулы на каждый день.'},
-  {id:'05', name:'Блуза «Pearl Silk»', cat:'Топы и блузы', tags:['stock'], aaa:false, price:'19 900', sizes:['S','M','L','XL'], quality:'AA · Премиум', fabric:'Искусственный шёлк', img:'foto/coming-08.jpg', desc:'Шелковистая блуза с мягкой драпировкой. Лёгкий блеск и приятная посадка по плечу.'},
-  {id:'06', name:'Юбка «Riviera»', cat:'Низ', tags:['order'], aaa:false, price:'24 900', sizes:['XS','S','M','L'], quality:'AA · Премиум', fabric:'Шёлк-твил', img:'foto/coming-09.jpg', desc:'Мини-юбка А-силуэта с принтом — яркий акцент образа. Подберём под верх из каталога.'},
-  {id:'07', name:'Балетки «Classic Bow»', cat:'Обувь', tags:['order'], aaa:true, price:'52 000', sizes:['35','36','37','38','39','40'], quality:'AAA+ · Lux', fabric:'Кожа · ≈100 оттенков', img:'foto/coming-10.jpg', desc:'Классические балетки с фирменным мыском и бантом. Доступно около 100 оттенков под заказ — пришлите желаемый цвет.'},
-  {id:'08', name:'Платок «Silk Twill»', cat:'Аксессуары', tags:['stock'], aaa:false, price:'9 900', sizes:['ONE'], quality:'AA · Премиум', fabric:'Шёлковый твил', img:'foto/coming-11.jpg', desc:'Шёлковый платок с принтом — акцент, который завершает образ.'}
+  /* ===== ПЛАТЬЯ ===== */
+  {id:'d1', name:'Платье Zimmermann «Floral»', cat:'Платья', tags:['stock','order'], aaa:true, price:'78 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Лён-шёлк · акварельный принт',
+    img:'foto/01.jpg', imgs:['foto/01.jpg','foto/03.jpg','foto/05.jpg','foto/02.jpg','foto/04.jpg'],
+    desc:'Романтичное платье-бюстье с пышной юбкой и бело-голубым акварельным флоральным принтом. Корсетный лиф с драпировкой, плотная фактурная ткань, оригинальная фурнитура и бирка Zimmermann.'},
+  {id:'d2', name:'Платье Zimmermann «Vintage Floral» макси', cat:'Платья', tags:['order'], aaa:true, price:'92 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Лён · барочный флор-принт',
+    img:'foto/20.jpg', imgs:['foto/20.jpg','foto/19.jpg','foto/18.jpg'],
+    desc:'Длинное платье-рубашка макси с длинным рукавом и винтажным барочным флоральным принтом в пастельной гамме. Изящные пуговицы, пояс, струящийся силуэт. Эффектный образ для лета и отпуска.'},
+  {id:'d3', name:'Платье «Riviera» флор-мини с кружевом', cat:'Платья', tags:['stock','order'], aaa:true, price:'46 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Хлопок-жаккард · макраме',
+    img:'foto/25.jpg', imgs:['foto/25.jpg','foto/27.jpg','foto/26.jpg','foto/24.jpg','foto/22.jpg','foto/23.jpg','foto/21.jpg'],
+    desc:'Мини-платье на бретелях с сине-зелёным флоральным принтом и кружевной отделкой по талии и подолу. Корсетная посадка, пышная юбка — самый «открыточный» летний образ.'},
+  {id:'d4', name:'Платье-люрекс «Étoile» трикотаж', cat:'Платья', tags:['order'], aaa:true, price:'56 000', sizes:['S','M','L','XL'], quality:'AAA+ · Lux', fabric:'Трикотаж с люрексом · 7 цветов',
+    img:'foto/11.jpg', imgs:['foto/11.jpg','foto/86.jpg','foto/12.jpg','foto/75.jpg','foto/83.jpg','foto/71.jpg'],
+    desc:'Облегающее трикотажное платье миди с мерцающим люрексом и расклёшенным низом. Доступно в 7 цветах: тёмно-синий, чёрный, голубой, беж, тёмно-зелёный, бордо, красный. Садится по фигуре, тянется.'},
+  {id:'d5', name:'Платье «Majolica» бюстье миди', cat:'Платья', tags:['stock','order'], aaa:true, price:'64 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Стрейч-сатин · 4 цвета',
+    img:'foto/73.jpg', imgs:['foto/73.jpg','foto/69.jpg','foto/53.jpg','foto/54.jpg','foto/55.jpg','foto/66.jpg','foto/61.jpg'],
+    desc:'Культовое платье-бюстье длины миди с майоликовым принтом и корсетным лифом на косточках. Доступно в 4 расцветках: сине-белая, жёлтая, фиолетовая, розовая. Силуэт точно по фигуре.'},
+  {id:'d6', name:'Платье «Bluebell» флор-бэбидолл', cat:'Платья', tags:['stock'], aaa:true, price:'44 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Органза · флор-принт',
+    img:'foto/60.jpg', imgs:['foto/60.jpg','foto/63.jpg'],
+    desc:'Воздушное мини-платье силуэта бэбидолл с драпированным лифом и сиренево-голубым флоральным принтом. Пышная юбка, тонкие бретели — нежный и женственный образ.'},
+  {id:'d7', name:'Платье «Toile Romance» макси-корсет', cat:'Платья', tags:['order'], aaa:true, price:'68 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Органза · toile-принт · 2 цвета',
+    img:'foto/64.jpg', imgs:['foto/64.jpg','foto/90.jpg'],
+    desc:'Романтичное платье макси с корсетным лифом на косточках и сюжетным toile-принтом. Завязки на плечах, пояс, многослойная юбка. Доступно в синем и пудрово-персиковом.'},
+  {id:'d8', name:'Платье Pucci-print шёлк-комбинация', cat:'Платья', tags:['stock','order'], aaa:true, price:'52 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Натуральный шёлк · принт',
+    img:'foto/84.jpg', imgs:['foto/84.jpg','foto/88.jpg','foto/80.jpg','foto/76.jpg','foto/91.jpg'],
+    desc:'Платье-комбинация в пол на тонких бретелях с фирменным психоделик-принтом в бирюзово-фиолетовой гамме. Струящийся шёлк, V-образный вырез, силуэт «рыбка».'},
+  {id:'d9', name:'Платье «Knit Couture» трикотаж макси', cat:'Платья', tags:['order'], aaa:true, price:'58 000', sizes:['S','M','L'], quality:'AAA+ · Lux', fabric:'Ажурный трикотаж · пайетки',
+    img:'foto/77.jpg', imgs:['foto/77.jpg','foto/67.jpg'],
+    desc:'Длинное вязаное платье на пуговицах с фактурным ажурным узором и тонким мерцанием. Накладные карманы, расклёшенный низ. Чёрный и синий варианты — элегантно и дорого.'},
+  {id:'d10', name:'Платье «Noir» слип на бретелях', cat:'Платья', tags:['stock'], aaa:false, price:'34 000', sizes:['XS','S','M','L'], quality:'AA · Премиум', fabric:'Вискоза-сатин · кант',
+    img:'foto/93.jpg', imgs:['foto/93.jpg'],
+    desc:'Чёрное платье-комбинация с контрастным белым кантом и V-вырезом. Лаконичный силуэт «рыбка», лёгкая струящаяся ткань — база, которую легко дополнить аксессуарами.'},
+
+  /* ===== СУМКИ И АКСЕССУАРЫ ===== */
+  {id:'b1', name:'Сумка Dior «D-Joy» Crystal Flowers', cat:'Сумки и аксессуары', tags:['order'], aaa:true, price:'168 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Кожа · кристальные цветы',
+    img:'foto/92.jpg', imgs:['foto/92.jpg','foto/06.jpg','foto/82.jpg','foto/72.jpg','foto/79.jpg','foto/87.jpg'],
+    desc:'Белая сумка-багет с ручной вышивкой кристаллами-цветами в розово-сиреневом градиенте, золотая фурнитура и подвеска D.I.O.R., съёмный ремень-цепочка. Эксклюзив AAA+ в полной упаковке.'},
+  {id:'b2', name:'Сумка Lady Dior Crystal · Silver', cat:'Сумки и аксессуары', tags:['order'], aaa:true, price:'158 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Сатин · стразовая россыпь',
+    img:'foto/31.jpg', imgs:['foto/31.jpg','foto/33.jpg','foto/62.jpg','foto/70.jpg','foto/78.jpg','foto/32.jpg'],
+    desc:'Мини Lady Dior, целиком расшитая серебристыми кристаллами, с подвесками-шармами D.I.O.R. Съёмный ремень. Вечерняя сумка, которая собирает все взгляды.'},
+  {id:'b3', name:'Сумка Lady Dior Crystal · Blush', cat:'Сумки и аксессуары', tags:['order'], aaa:true, price:'162 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Кожа · цветочная вышивка кристаллами',
+    img:'foto/40.jpg', imgs:['foto/40.jpg','foto/35.jpg','foto/36.jpg','foto/34.jpg','foto/37.jpg','foto/38.jpg','foto/41.jpg'],
+    desc:'Молочная сумка с ромбовидной вышивкой кристаллами и хрустальными цветами в пудрово-розовой гамме. Золотая фурнитура, ремень-цепочка, полная упаковка Dior.'},
+  {id:'b4', name:'Сумка Lady Dior Crystal · Gold', cat:'Сумки и аксессуары', tags:['order'], aaa:true, price:'160 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Сатин · золотые кристаллы',
+    img:'foto/58.jpg', imgs:['foto/58.jpg','foto/56.jpg','foto/57.jpg','foto/59.jpg','foto/65.jpg'],
+    desc:'Lady Dior в золотисто-шампань кристаллах с фирменными шармами. Тёплый мерцающий оттенок, который роскошно смотрится в вечернем образе.'},
+  {id:'b5', name:'Сумка Dior «D-Joy» Crystal · Rosé', cat:'Сумки и аксессуары', tags:['order'], aaa:true, price:'164 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Сатин · розовые кристаллы',
+    img:'foto/74.jpg', imgs:['foto/74.jpg','foto/81.jpg','foto/85.jpg'],
+    desc:'Удлинённая сумка-багет D-Joy в розовом золоте, расшитая кристаллами, со съёмным ремнём и цепочкой. Доступны размеры 16 и 22 см, оттенки: золото, серебро, розовый, чёрный.'},
+  {id:'b6', name:'Клатч Dior Crystal · Pink', cat:'Сумки и аксессуары', tags:['stock','order'], aaa:true, price:'138 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Сатин · кристаллы',
+    img:'foto/29.jpg', imgs:['foto/29.jpg','foto/28.jpg'],
+    desc:'Вечерний клатч на короткой ручке с россыпью кристаллов в розовом и серебристом. Компактный, с подвеской Dior — для выхода и торжества.'},
+  {id:'b7', name:'Клатч Dior Crystal · Silver', cat:'Сумки и аксессуары', tags:['stock'], aaa:true, price:'138 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Сатин · кристаллы · цепочка',
+    img:'foto/30.jpg', imgs:['foto/30.jpg'],
+    desc:'Серебристый клатч с градиентной россыпью кристаллов и съёмной цепочкой. Носится в руке и на плече — универсальная вечерняя позиция.'},
+
+  /* ===== ОБУВЬ ===== */
+  {id:'s1', name:'Туфли-слингбэк Crystal · Pink', cat:'Обувь', tags:['order'], aaa:true, price:'54 000', sizes:['35','36','37','38','39','40'], quality:'AAA+ · Lux', fabric:'Сатин · кристаллы',
+    img:'foto/96.jpg', imgs:['foto/96.jpg','foto/97.jpg','foto/95.jpg'],
+    desc:'Атласные туфли-слингбэк с острым мысом и кристальной отделкой по канту. Розовый, чёрный и мятный — выбор под образ. Каблук-шпилька, благородное сияние.'},
+  {id:'s2', name:'Туфли-слингбэк Crystal · Noir', cat:'Обувь', tags:['order'], aaa:true, price:'54 000', sizes:['35','36','37','38','39','40'], quality:'AAA+ · Lux', fabric:'Сатин · кристаллы',
+    img:'foto/94.jpg', imgs:['foto/94.jpg','foto/95.jpg'],
+    desc:'Чёрные атласные слингбэки с щедрой кристальной вышивкой по мысу и ремешку. Вечерняя классика, которая делает образ дороже.'},
+  {id:'s3', name:'Босоножки Rene Caovilla Red', cat:'Обувь', tags:['order'], aaa:true, price:'42 000', sizes:['34','35','36','37','38','39','40','41','42','43'], quality:'AAA+ · Lux', fabric:'Сатин · кристальная спираль',
+    img:'foto/89.jpg', imgs:['foto/89.jpg'],
+    desc:'Красные босоножки на шпильке с фирменной кристальной «змейкой», обвивающей щиколотку. Размерный ряд 34–43. Эффектный акцент вечернего образа.'},
+
+  /* ===== ТОПЫ И ТРИКОТАЖ ===== */
+  {id:'t1', name:'Футболка Acne Studios «Stockholm 1996»', cat:'Топы и трикотаж', tags:['stock','order'], aaa:false, price:'21 000', sizes:['XS','S','M','L'], quality:'AA · Премиум', fabric:'Хлопок · 2 цвета',
+    img:'foto/42.jpg', imgs:['foto/42.jpg','foto/46.jpg','foto/44.jpg','foto/43.jpg','foto/45.jpg'],
+    desc:'Базовая хлопковая футболка с фирменным минималистичным принтом. Чёрный и молочный варианты, чуть приталенный крой. Идеальная база на каждый день.'},
+  {id:'t2', name:'Топ трикотажный с кружевом · White', cat:'Топы и трикотаж', tags:['stock'], aaa:false, price:'23 000', sizes:['XS','S','M','L'], quality:'AA · Премиум', fabric:'Рибана · цветочное кружево',
+    img:'foto/48.jpg', imgs:['foto/48.jpg','foto/47.jpg','foto/49.jpg'],
+    desc:'Облегающий топ в рубчик с объёмной цветочной кружевной аппликацией по вырезу. Женственная деталь, которая сочетается с юбкой и брюками.'},
+  {id:'t3', name:'Топ трикотажный с кружевом · Black', cat:'Топы и трикотаж', tags:['stock'], aaa:false, price:'23 000', sizes:['XS','S','M','L'], quality:'AA · Премиум', fabric:'Рибана · цветочное кружево',
+    img:'foto/52.jpg', imgs:['foto/52.jpg','foto/50.jpg','foto/51.jpg'],
+    desc:'Чёрный облегающий топ в рубчик с цветочным кружевом по линии груди. Лаконичный и чувственный — отлично работает в вечернем образе.'},
+
+  /* ===== АКСЕССУАРЫ ===== */
+  {id:'a1', name:'Очки Chanel', cat:'Аксессуары', tags:['order'], aaa:true, price:'25 000', sizes:['ONE'], quality:'AAA+ · Lux', fabric:'Металл · ацетат',
+    img:'foto/89.jpg', imgs:['foto/89.jpg'],
+    desc:'Узкие солнцезащитные очки в тонкой оправе — главный аксессуар сезона. Завершают образ и добавляют дерзости. Уточняйте наличие моделей.'}
 ];
 
-const CATS = ['Все','Платья','Низ','Костюмы','Топы и блузы','Обувь','Аксессуары'];
+const CATS = ['Все','Платья','Сумки и аксессуары','Обувь','Топы и трикотаж','Аксессуары'];
 
 /* ---- elegant placeholder (shown until a real photo is added) ---- */
 function placeholder(name){
@@ -1107,11 +1213,13 @@ function setCrest(el){
   probe.src = 'foto/logo.png';
 }
 
-/* ---- render catalog ---- */
-const grid = document.getElementById('grid');
+/* ---- render catalog (grouped by category sections) ---- */
+const catsWrap = document.getElementById('catalog-cats');
 const filters = document.getElementById('filters');
 let activeCat = 'Все';
 const favs = new Set();
+const slug = s => s.toLowerCase().replace(/[^a-zа-я0-9]+/gi,'-');
+function plural(n){ const a=n%10,b=n%100; if(a===1&&b!==11) return 'модель'; if(a>=2&&a<=4&&(b<10||b>=20)) return 'модели'; return 'моделей'; }
 
 function tagHtml(p){
   let h='<div class="card-badges">';
@@ -1142,12 +1250,20 @@ function cardHtml(p){
 function renderFilters(){
   filters.innerHTML = CATS.map(c=>`<button class="chip ${c===activeCat?'active':''}" data-chip="${c}">${c}</button>`).join('');
 }
-function renderGrid(){
-  const list = activeCat==='Все' ? PRODUCTS : PRODUCTS.filter(p=>p.cat===activeCat);
-  grid.innerHTML = list.map(cardHtml).join('');
-  grid.querySelectorAll('img[data-src]').forEach(hydrateImg);
-  grid.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-  grid.querySelectorAll('.fav').forEach(b=>{ if(favs.has(b.dataset.fav)) b.classList.add('on'); });
+function renderCatalog(){
+  const cats = CATS.filter(c=>c!=='Все');
+  const shown = activeCat==='Все' ? cats : cats.filter(c=>c===activeCat);
+  catsWrap.innerHTML = shown.map(c=>{
+    const items = PRODUCTS.filter(p=>p.cat===c);
+    if(!items.length) return '';
+    return `<div class="cat-block" id="cat-${slug(c)}">
+      <div class="cat-head reveal"><h3>${c}</h3><span class="cat-count">${items.length} ${plural(items.length)}</span></div>
+      <div class="grid">${items.map(cardHtml).join('')}</div>
+    </div>`;
+  }).join('');
+  catsWrap.querySelectorAll('img[data-src]').forEach(hydrateImg);
+  catsWrap.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  catsWrap.querySelectorAll('.fav').forEach(b=>{ if(favs.has(b.dataset.fav)) b.classList.add('on'); });
 }
 
 /* ---- quick view ---- */
@@ -1256,7 +1372,7 @@ form.addEventListener('input',e=>{ const w=e.target.closest('.field'); if(w) w.c
 /* ---- events ---- */
 document.addEventListener('click',e=>{
   const chip=e.target.closest('[data-chip]');
-  if(chip){ activeCat=chip.dataset.chip; renderFilters(); renderGrid(); return; }
+  if(chip){ activeCat=chip.dataset.chip; renderFilters(); renderCatalog(); return; }
   const view=e.target.closest('[data-view]'); if(view){ openQV(view.dataset.view); return; }
   const fav=e.target.closest('[data-fav]');
   if(fav){ const id=fav.dataset.fav; favs.has(id)?favs.delete(id):favs.add(id); fav.classList.toggle('on'); return; }
@@ -1285,19 +1401,31 @@ document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 
 /* ---- lookbook marquee (real photos, seamless loop) ---- */
 const LOOK = [
-  {img:'foto/photo_1782110428690_0.jpg', name:'Платье Zimmermann «Floral»', cat:'Платья · AAA+'},
-  {img:'foto/photo_1782110430708_8.jpg', name:'Сумка Dior «D-Joy»', cat:'Crystal · AAA+'},
-  {img:'foto/photo_1782110429384_2.jpg', name:'Zimmermann · фактура', cat:'Лён-шёлк'},
-  {img:'foto/photo_1782110430026_5.jpg', name:'Dior · полная упаковка', cat:'Аксессуары'},
-  {img:'foto/photo_1782110430913_9.jpg', name:'Унисекс «WTF is Matcha»', cat:'Новинка · Drop'},
-  {img:'foto/photo_1782110429812_4.jpg', name:'Zimmermann · вид сзади', cat:'Премиум посадка'},
-  {img:'foto/photo_1782110430504_7.jpg', name:'Dior · золотой шарм', cat:'Деталь · Lux'}
+  {img:'foto/01.jpg', name:'Платье Zimmermann «Floral»', cat:'Платья · AAA+'},
+  {img:'foto/92.jpg', name:'Сумка Dior «D-Joy»', cat:'Crystal · AAA+'},
+  {img:'foto/25.jpg', name:'Платье «Riviera» мини', cat:'Лето · Lux'},
+  {img:'foto/31.jpg', name:'Lady Dior · Silver', cat:'Аксессуары'},
+  {img:'foto/84.jpg', name:'Шёлк Pucci-print', cat:'Платья · Silk'},
+  {img:'foto/96.jpg', name:'Слингбэк Crystal', cat:'Обувь · Lux'},
+  {img:'foto/13.jpg', name:'Футболка «WTF is Matcha»', cat:'Новинка · Drop'},
+  {img:'foto/73.jpg', name:'Платье «Majolica»', cat:'Премиум посадка'},
+  {img:'foto/40.jpg', name:'Lady Dior · Blush', cat:'Деталь · Lux'}
 ];
 (function buildLookbook(){
   const track=document.getElementById('lb-track'); if(!track) return;
   const item=l=>`<figure class="lb-item"><img data-src="${l.img}" alt="${l.name}"/><figcaption><span>${l.cat}</span><b>${l.name}</b></figcaption></figure>`;
   track.innerHTML = (LOOK.map(item).join('')) + (LOOK.map(item).join('')); // duplicate for -50% loop
   track.querySelectorAll('img[data-src]').forEach(hydrateImg);
+})();
+
+/* ---- t-shirt drop thumbnails ---- */
+(function teeGallery(){
+  const thumbs=document.querySelectorAll('.tee-thumbs .tt'); if(!thumbs.length) return;
+  thumbs.forEach(b=>b.addEventListener('click',()=>{
+    thumbs.forEach(x=>x.classList.remove('on')); b.classList.add('on');
+    const main=document.getElementById('tee-main'), t=b.querySelector('img');
+    if(main&&t) main.src=t.getAttribute('src');
+  }));
 })();
 
 /* ---- scroll progress (rAF-throttled) ---- */
@@ -1342,7 +1470,7 @@ if(heroImg && !matchMedia('(prefers-reduced-motion:reduce)').matches){
 [document.getElementById('brand-crest'),document.getElementById('hero-crest'),document.getElementById('foot-crest'),document.getElementById('load-crest')].forEach(el=>el&&setCrest(el));
 document.querySelectorAll('img[data-src]').forEach(hydrateImg);
 document.getElementById('yr').textContent=new Date().getFullYear();
-renderFilters(); renderGrid();
+renderFilters(); renderCatalog();
 
 /* ---- hide loader ---- */
 const loader=document.getElementById('loader');
