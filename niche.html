@@ -74,7 +74,7 @@ section{position:relative}
 .serif{font-family:var(--f-display)}
 .script{font-family:var(--f-script);font-weight:400}
 
-h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.12;letter-spacing:.01em}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.12;letter-spacing:.01em;overflow-wrap:break-word}
 .h-sec{font-size:clamp(2rem,5vw,3.4rem);font-weight:600}
 .lead{color:var(--ink-2);font-size:clamp(.98rem,1.6vw,1.1rem);max-width:60ch}
 
@@ -476,6 +476,7 @@ footer ul a:hover{color:var(--gold-2)}
 }
 @media(max-width:880px){
   .nav-links{display:none}
+  .nav-cta .btn-gold{display:none}
   .burger{display:flex}
   .hero-grid{grid-template-columns:1fr;gap:40px}
   .hero-card{max-width:420px;margin:0 auto}
@@ -1008,17 +1009,21 @@ footer ul a:hover{color:var(--gold-2)}
 <script>
 /* ============================================================
    NICHÉ by NAYA — data + interactions
-   ▸ HOW TO ADD REAL PHOTOS:
-     Drop image files into the /foto folder and set the matching
-     "img" filename below. Until a photo exists, an elegant
-     placeholder is shown automatically — the site stays presentable.
-     Suggested files:  foto/hero.jpg, foto/tshirt-1..3.jpg,
-     foto/01.jpg, foto/02.jpg ... (one per product, see "img").
+   ▸ КАК ДОБАВИТЬ / ЗАМЕНИТЬ ФОТО:
+     Положите файл в папку /foto и впишите его имя в поле "img"
+     (или в массив "imgs" для галереи quick-view). Пока файла нет,
+     автоматически показывается элегантный плейсхолдер — сайт
+     остаётся презентабельным.
+     Сейчас подключены реальные фото:
+       • Платье Zimmermann  — photo_…_0,2,4,1,3.jpg
+       • Сумка Dior D-Joy   — photo_…_8,5,7,6.jpg
+       • Футболка (новинка) — photo_…_9.jpg
+     Позиции «coming soon» ждут файлы foto/coming-06…11.jpg.
+     Логотип: если положить foto/logo.png — он заменит SVG-герб.
    ============================================================ */
 
-/* ---- 1. CATALOG DATA (edit freely) ----
-   Реальные фото лежат в /foto. Цена балеток (52 000 ₸) — фактическая;
-   остальные цены — ориентировочные, уточните и поправьте при необходимости. */
+/* ---- 1. CATALOG DATA (редактируйте свободно) ----
+   Цены — ориентировочные (placeholder), уточните и поправьте. */
 const PRODUCTS = [
   {id:'01', name:'Платье Zimmermann «Floral»', cat:'Платья', tags:['stock','order'], aaa:true, price:'78 000', sizes:['XS','S','M','L'], quality:'AAA+ · Lux', fabric:'Лён-шёлк · акварельный принт',
     img:'foto/photo_1782110428690_0.jpg',
