@@ -202,6 +202,12 @@ header.scrolled{box-shadow:0 8px 30px -22px rgba(0,0,0,.4)}
 .drop-actions{display:flex;gap:14px;flex-wrap:wrap}
 .drop .btn-ghost{border-color:rgba(255,255,255,.5);color:#fff}
 .drop .btn-ghost:hover{background:#fff;color:var(--ink)}
+.tee-shot{grid-column:1/-1;position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);background:#231f1b;aspect-ratio:4/5;margin:0}
+.tee-shot img{width:100%;height:100%;object-fit:cover;object-position:center 32%;transition:transform .8s var(--ease)}
+.tee-shot:hover img{transform:scale(1.05)}
+.tee-shot figcaption{position:absolute;left:0;right:0;bottom:0;padding:46px 24px 22px;background:linear-gradient(transparent,rgba(20,16,12,.85))}
+.tee-shot figcaption span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-2)}
+.tee-shot figcaption b{font-family:var(--f-display);font-size:1.5rem;font-weight:600;color:#fff;display:block;margin-top:4px}
 
 /* ---------- catalog ---------- */
 .filters{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:38px}
@@ -363,8 +369,12 @@ footer ul a:hover{color:var(--gold-2)}
 .modal-close{position:absolute;top:16px;right:16px;z-index:3;width:42px;height:42px;border-radius:50%;background:rgba(255,255,255,.9);display:grid;place-items:center;border:1px solid var(--line)}
 .modal-close svg{width:20px;height:20px}
 .qv{display:grid;grid-template-columns:1fr 1fr}
-.qv-img{aspect-ratio:3/4;background:var(--bg-2);overflow:hidden}
-.qv-img img{width:100%;height:100%;object-fit:cover}
+.qv-img{position:relative;aspect-ratio:3/4;background:var(--bg-2);overflow:hidden}
+.qv-img #qv-main{width:100%;height:100%;object-fit:cover}
+.qv-thumbs{position:absolute;left:0;right:0;bottom:0;display:flex;gap:8px;padding:12px;overflow-x:auto;background:linear-gradient(transparent,rgba(20,16,12,.55))}
+.qv-thumbs .qt{width:54px;height:64px;flex:none;border-radius:8px;overflow:hidden;border:2px solid transparent;background:var(--bg-2);padding:0;transition:border-color .2s}
+.qv-thumbs .qt img{width:100%;height:100%;object-fit:cover}
+.qv-thumbs .qt.on{border-color:var(--gold-2)}
 .qv-body{padding:36px 34px;display:flex;flex-direction:column}
 .qv-body .card-cat{margin-bottom:6px}
 .qv-body h2{font-size:2rem;margin-bottom:10px}
@@ -643,22 +653,23 @@ footer ul a:hover{color:var(--gold-2)}
 <section class="drop sec" id="drop">
   <div class="wrap drop-grid">
     <div class="drop-gallery reveal">
-      <div class="g"><img data-src="foto/tshirt-1.jpg" alt="Унисекс футболка NICHÉ by NAYA — основной кадр" /></div>
-      <div class="g"><img data-src="foto/tshirt-2.jpg" alt="Унисекс футболка — деталь" /></div>
-      <div class="g"><img data-src="foto/tshirt-3.jpg" alt="Унисекс футболка — посадка" /></div>
+      <figure class="tee-shot">
+        <img data-src="foto/photo_1782110430913_9.jpg" alt="Унисекс футболка NICHÉ — статемент-принт «WTF is Matcha»" />
+        <figcaption><span>Statement-принт</span><b>«WTF is Matcha»</b></figcaption>
+      </figure>
     </div>
     <div class="reveal">
-      <span class="pill"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>Скоро в продаже · Новинка</span>
-      <h2>Унисекс футболка <em>NICHÉ</em></h2>
-      <p>Первый дроп капсульной линии — лаконичная унисекс футболка премиального кроя. Плотный хлопок, который держит форму, чистая посадка oversize и фирменная фурнитура. Одинаково хорошо садится и на женский, и на мужской образ.</p>
+      <span class="pill"><svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><circle cx="12" cy="12" r="6"/></svg>Новый дроп · Унисекс</span>
+      <h2>Футболка <em>«WTF&nbsp;is&nbsp;Matcha»</em></h2>
+      <p>Первый дроп капсульной линии — унисекс-футболка глубокого тёмно-синего цвета с фирменным статемент-принтом и графикой шампанского. Плотный хлопок, который держит форму, свободная oversize-посадка. Одинаково хорошо садится и на женский, и на мужской образ.</p>
       <div class="drop-feats">
         <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Плотный хлопок premium</div>
-        <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Унисекс посадка XS–XXL</div>
+        <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Унисекс oversize · XS–XXL</div>
         <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Не теряет форму и цвет</div>
         <div class="f"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12l5 5L20 7"/></svg>Лимитированный тираж</div>
       </div>
       <div class="drop-actions">
-        <button class="btn btn-gold" onclick="preorder('Унисекс футболка NICHÉ')">Записаться в предзаказ</button>
+        <button class="btn btn-gold" onclick="preorder('Унисекс футболка «WTF is Matcha»')">Записаться в предзаказ</button>
         <a class="btn btn-ghost" href="#order">Узнать цену</a>
       </div>
     </div>
@@ -740,17 +751,17 @@ footer ul a:hover{color:var(--gold-2)}
       <div class="review reveal" data-d="1">
         <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg></div>
         <p>«Платье пришло точь-в-точь как на фото — ткань плотная, посадка идеальная. Выглядит дорого, в Алматы такого не найти.»</p>
-        <div class="who"><span class="av">А</span><div><b>Аружан</b><span>Платье D&G «Majolica»</span></div></div>
+        <div class="who"><span class="av">А</span><div><b>Аружан</b><span>Платье Zimmermann «Floral»</span></div></div>
       </div>
       <div class="review reveal" data-d="2">
         <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg></div>
         <p>«Искала редкие балетки — нашли под запрос за пару дней. Помогли с размером, всё честно по предоплате. Доставка быстрая.»</p>
-        <div class="who"><span class="av">Д</span><div><b>Динара</b><span>Балетки Chanel · под заказ</span></div></div>
+        <div class="who"><span class="av">Д</span><div><b>Динара</b><span>Подбор под запрос · доставка</span></div></div>
       </div>
       <div class="review reveal" data-d="3">
         <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6.5 7 .6-5.3 4.6L18.5 21 12 17.3 5.5 21 7.3 13.7 2 9.1l7-.6z"/></svg></div>
-        <p>«Сумка Lady Dior в полной упаковке, фурнитура и вышивка на высоте. Девочки, это тот самый уровень AAA+. Заказываю не первый раз.»</p>
-        <div class="who"><span class="av">К</span><div><b>Камила</b><span>Сумка Lady Dior · Lux</span></div></div>
+        <p>«Сумка Dior в полной упаковке, фурнитура и кристальная вышивка на высоте. Девочки, это тот самый уровень AAA+. Заказываю не первый раз.»</p>
+        <div class="who"><span class="av">К</span><div><b>Камила</b><span>Сумка Dior «D-Joy» · Lux</span></div></div>
       </div>
     </div>
     <div class="react-row reveal">
@@ -1141,8 +1152,12 @@ let qvSel = '';
 function openQV(id){
   const p = PRODUCTS.find(x=>x.id===id); if(!p) return;
   qvSel = '';
+  const gal = (p.imgs && p.imgs.length>1) ? p.imgs : null;
   qvBody.innerHTML = `
-    <div class="qv-img"><img data-src="${p.img}" alt="${p.name}"/></div>
+    <div class="qv-img">
+      <img id="qv-main" data-src="${p.img}" alt="${p.name}"/>
+      ${gal ? `<div class="qv-thumbs">${gal.map((s,i)=>`<button class="qt${i===0?' on':''}" data-thumb="${s}"><img data-src="${s}" alt=""/></button>`).join('')}</div>` : ''}
+    </div>
     <div class="qv-body">
       <span class="card-cat">${p.cat}</span>
       <h2 id="qv-title">${p.name}</h2>
@@ -1161,6 +1176,12 @@ function openQV(id){
       </div>
     </div>`;
   qvBody.querySelectorAll('img[data-src]').forEach(hydrateImg);
+  qvBody.querySelectorAll('.qt').forEach(b=>b.addEventListener('click',()=>{
+    qvBody.querySelectorAll('.qt').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    const main=qvBody.querySelector('#qv-main'), tImg=b.querySelector('img');
+    if(main&&tImg) main.src=tImg.getAttribute('src');
+  }));
   qvBody.querySelectorAll('.sz').forEach(s=>s.addEventListener('click',()=>{
     qvBody.querySelectorAll('.sz').forEach(x=>x.classList.remove('sel'));
     s.classList.add('sel'); qvSel=s.dataset.sz;
